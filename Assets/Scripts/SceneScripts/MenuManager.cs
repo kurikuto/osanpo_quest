@@ -14,6 +14,8 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         playerStatus = PlayerStatus.GetInstance();
+        Debug.Log(playerStatus.WalkCount.ToString());
+        Debug.Log(playerStatus.CurrentStory.ToString());
     }
 
     // ボタン押下

@@ -13,7 +13,7 @@ public class TitleManager : MonoBehaviour
 
     public void Start()
     {
-        playerStatus = PlayerStatus.GetInstance();
+        //playerStatus = PlayerStatus.GetInstance();
         playerStatus.Load();
     }
 
@@ -25,17 +25,14 @@ public class TitleManager : MonoBehaviour
         SoundManager.instance.PlaySE(0);
         Debug.Log("ボタンがクリックされました。");
 
-        if (playerStatus.WalkCount > 0)
+        if (EditorUtility.DisplayDialog("はじめから", "前回までのセーブデータは削除されます。\nよろしいですか？", "はい", "いいえ"))
         {
-            if (EditorUtility.DisplayDialog("はじめから", "前回までのセーブデータは削除されます。\nよろしいですか？", "はい", "いいえ"))
-            {
-                // セーブデータ初期化
-                playerStatus.DeleteSavedData();
-            }
-            else
-            {
-                return;
-            }
+            // セーブデータ初期化
+            playerStatus.DeleteSavedData();
+        }
+        else
+        {
+            return;
         }
 
         // 画面遷移

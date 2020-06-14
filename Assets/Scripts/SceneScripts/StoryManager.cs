@@ -19,6 +19,8 @@ public class StoryManager : MonoBehaviour
     public PlayerStatus playerStatus;
     // テキスト位置
     private int textIndex = 1;
+    // 完了フラグ
+    private bool isCompleted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,15 @@ public class StoryManager : MonoBehaviour
 
     public void ShowButtons(bool isTrue)
     {
-        Buttons.gameObject.SetActive(isTrue);
+        // 全テキスト表示が終わっていたら、ボタン表示せずメニューに戻る
+        if (isCompleted)
+        {
+            BackToHome();
+        }
+        else
+        {
+            Buttons.gameObject.SetActive(isTrue);
+        }
     }
 
     public void OnClickButton()
@@ -51,6 +61,9 @@ public class StoryManager : MonoBehaviour
 
     void ShowText(List<object> textArray)
     {
+        // ボタン非表示
+        ShowButtons(false);
+
         // 文字列として詰め直し
         List<string> textList = new List<string>();
         foreach (object obj in textArray)
@@ -60,6 +73,27 @@ public class StoryManager : MonoBehaviour
 
         // テキスト表示
         dialogTextManager.SetScenarios(textList.ToArray());
-        textIndex++;
+
+        if (story.textDictionary.Count == textIndex)
+        {
+            isCompleted = true;
+        }
+        else
+        {
+            textIndex++;
+        }
     }
+
+    void BackToHome()
+    {
+        // ストーリー進行度増加
+        if (story.SetNextStory())
+        {
+            // クリック音
+            SoundManager.instance.PlaySE(0);
+            // 画面遷移（暫定）
+            sceneTransitionManager.LoadTo("Menu");
+        }
+    }
+
 }

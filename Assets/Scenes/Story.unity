@@ -821,6 +821,11 @@ PrefabInstance:
       propertyPath: onCompletedEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9195298314061840673, guid: 8ac45db83c4e446d6800e3c4d2a0087a,
+        type: 3}
+      propertyPath: eventDelayTime
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 9195298314061840674, guid: 8ac45db83c4e446d6800e3c4d2a0087a,
         type: 3}
       propertyPath: m_Name
