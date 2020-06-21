@@ -18,9 +18,8 @@ public class WalkingManager : MonoBehaviour
     private int walkCount;
     // 進行状況
     public PlayerStatus playerStatus;
-
-    // イベント発生ステージ
-    //readonly int[] eventStage = { 3, 7, 15, 20 };
+    // イベント発生ステージ（暫定）
+    readonly int[] eventStages = { 3, 7, 15, 20 };
 
     private void Start()
     {
@@ -53,7 +52,16 @@ public class WalkingManager : MonoBehaviour
         walkCount = playerStatus.AddWalkCount();
         Debug.Log("歩いた回数：" + walkCount);
 
-        if (walkCount % 3 == 0) // 暫定
+        bool isEventStage = false;
+        foreach (int eventStage in eventStages)
+        {
+            if(walkCount == eventStage)
+            {
+                isEventStage = true;
+            }
+        }
+
+        if (isEventStage)
         {
             Debug.Log("イベント発生！");
             DoEvent();
