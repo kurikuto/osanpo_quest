@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+// プレイヤー情報
 [Serializable]
 public class PlayerStatus
 {
@@ -11,7 +12,7 @@ public class PlayerStatus
     private int walkCount;
     // ストーリー進行状況
     [SerializeField]
-    public string CurrentStory { set; get; }
+    private string currentStory;
     // アイテム一覧
     [SerializeField]
     private List<string> items;
@@ -70,6 +71,13 @@ public class PlayerStatus
     {
         this.walkCount++;
         return this.walkCount;
+    }
+
+    // ストーリー進行のプロパティ
+    public string CurrentStory
+    {
+        set { this.currentStory = value; }
+        get { return this.currentStory; }
     }
 
     // アイテム一覧のプロパティ

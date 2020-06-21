@@ -11,6 +11,8 @@ public class Stories
     public PlayerStatus playerStatus;
     // 読み込むjson
     public Dictionary<string, object> textDictionary;
+    // 獲得アイテム
+    readonly string[] Items = {"羽子板", null, null};
 
     public Stories(string currentStory)
     {
@@ -28,6 +30,9 @@ public class Stories
     public bool SetNextStory()
     {
         int currentIndex = stories.IndexOf(playerStatus.CurrentStory);
+
+        // 獲得アイテムがあれば取得
+        if (Items[currentIndex] != null) playerStatus.GetItem(Items[currentIndex]);
 
         // 最後まで終わっている場合
         if (currentIndex == (stories.Count - 1)) return false;

@@ -14,8 +14,14 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         playerStatus = PlayerStatus.GetInstance();
+
+        // debug
         Debug.Log(playerStatus.WalkCount.ToString());
         Debug.Log(playerStatus.CurrentStory.ToString());
+        foreach( string Item in playerStatus.Items)
+        {
+            Debug.Log(Item);
+        }
     }
 
     // ボタン押下
