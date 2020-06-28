@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // ストーリー進行
 public class StoryManager : MonoBehaviour
 {
     // シーン移動管理
     public SceneTransitionManager sceneTransitionManager;
+    // 背景を管理
+    public BackgroundManager backgroundManager;
     // ダイアログテキストを管理
     public DialogTextManager dialogTextManager;
     // ボタン
@@ -21,6 +24,10 @@ public class StoryManager : MonoBehaviour
     private int textIndex = 1;
     // 完了フラグ
     private bool isCompleted = false;
+    // ボタンテキスト1
+    [SerializeField] Text button1;
+    // ボタンテキスト2
+    [SerializeField] Text button2;
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +41,14 @@ public class StoryManager : MonoBehaviour
         story = new Stories(currentStory);
 
         var textArray = (List<object>)story.textDictionary[textIndex.ToString()];
+        var buttonTextArray = (List<object>)story.buttonTextDictionary[textIndex.ToString()];
+
+        // 背景をセット
+        backgroundManager.SetImage(currentStory);
 
         //dialogTextManager.SetScenarios(new string[] { "おや・・・？", "（何か聞こえる・・。）" });
 
-        ShowText(textArray);
+        ShowText(textArray, buttonTextArray);
     }
 
     public void ShowButtons(bool isTrue)
@@ -56,10 +67,12 @@ public class StoryManager : MonoBehaviour
     public void OnClickButton()
     {
         var textArray = (List<object>)story.textDictionary[textIndex.ToString()];
-        ShowText(textArray);
+        var buttonTextArray = (List<object>)story.buttonTextDictionary[textIndex.ToString()];
+
+        ShowText(textArray, buttonTextArray);
     }
 
-    void ShowText(List<object> textArray)
+    void ShowText(List<object> textArray, List<object> buttonTextArray)
     {
         // ボタン非表示
         ShowButtons(false);
@@ -71,7 +84,11 @@ public class StoryManager : MonoBehaviour
             textList.Add((string)obj);
         }
 
-        // テキスト表示
+        // ボタン用テキストをセット(暫定)
+        button1.text = (string)buttonTextArray[0];
+        button2.text = (buttonTextArray.Count > 1) ? (string)buttonTextArray[1] : "";
+
+        // ストーリーテキスト表示
         dialogTextManager.SetScenarios(textList.ToArray());
 
         if (story.textDictionary.Count == textIndex)

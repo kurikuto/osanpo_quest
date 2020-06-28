@@ -11,6 +11,8 @@ public class Stories
     public PlayerStatus playerStatus;
     // 読み込むjson
     public Dictionary<string, object> textDictionary;
+    // 読み込むjson(ボタン用テキスト)
+    public Dictionary<string, object> buttonTextDictionary;
     // 獲得アイテム
     readonly string[] Items = {"羽子板", null, null};
 
@@ -24,6 +26,13 @@ public class Stories
         string jsonText = asset.text;
 
         textDictionary = (Dictionary<string, object>)Json.Deserialize(jsonText);
+
+        // 該当するストーリーのjsonファイルをロード(ボタン用)
+        TextAsset buttonAsset = Resources.Load("button/" + currentStory) as TextAsset;
+        string buttonJsonText = buttonAsset.text;
+
+        buttonTextDictionary = (Dictionary<string, object>)Json.Deserialize(buttonJsonText);
+
     }
 
     // 次のストーリーをセット
