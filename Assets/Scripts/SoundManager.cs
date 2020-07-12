@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour
     private const int HOME = 2;
     //private const int ITEMS = ; // MENUと同じ
     private const int WALKING = 3;
+    private const int ENDROLL = 4;
 
     // シングルトン
     // ：シーン間でのデータ/オブジェクト共有
@@ -60,6 +61,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "Walking":
                 audioSourceBGM.clip = audioClipBGM[WALKING];
+                break;
+            case "EndRoll":
+                audioSourceBGM.clip = audioClipBGM[ENDROLL];
                 break;
         }
 

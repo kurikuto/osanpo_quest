@@ -307,6 +307,7 @@ MonoBehaviour:
   sceneTransitionManager: {fileID: 1901136172}
   playerStatus:
     walkCount: 0
+    currentStory: beginning
     items: []
 --- !u!4 &131661295
 Transform:
@@ -1216,7 +1217,7 @@ PrefabInstance:
     - target: {fileID: 5474776605887664457, guid: 41303629035854a11b4d5cc9ba38f615,
         type: 3}
       propertyPath: audioClipBGM.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5474776605887664457, guid: 41303629035854a11b4d5cc9ba38f615,
         type: 3}

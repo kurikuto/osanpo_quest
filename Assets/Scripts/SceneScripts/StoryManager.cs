@@ -114,13 +114,10 @@ public class StoryManager : MonoBehaviour
             sceneTransitionManager.LoadTo("Menu");
         } else
         {
-            // TODO：エンドロールを出す
-
             // クリック音
-            SoundManager.instance.PlaySE(0);
-            // 画面遷移（暫定）
-            sceneTransitionManager.LoadTo("Menu");
-
+            //SoundManager.instance.PlaySE(0);
+            // エンドロール
+            sceneTransitionManager.LoadTo("EndRoll");
         }
     }
 
