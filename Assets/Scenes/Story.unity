@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 94169367}
   - component: {fileID: 94169366}
   m_Layer: 5
-  m_Name: NoButton
+  m_Name: Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -759,7 +759,7 @@ GameObject:
   - component: {fileID: 1089172206}
   - component: {fileID: 1089172205}
   m_Layer: 5
-  m_Name: YesButton
+  m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1311,14 +1311,15 @@ MonoBehaviour:
   sceneTransitionManager: {fileID: 1617965526}
   backgroundManager: {fileID: 1461087374}
   dialogTextManager: {fileID: 1407203111}
-  Buttons: {fileID: 407229656}
+  button1: {fileID: 94169366}
+  button2: {fileID: 1089172205}
   currentStory: 
   playerStatus:
     walkCount: 0
     currentStory: beginning
     items: []
-  button1: {fileID: 372230155}
-  button2: {fileID: 1525317558}
+  button1Text: {fileID: 372230155}
+  button2Text: {fileID: 1525317558}
 --- !u!4 &1889832499
 Transform:
   m_ObjectHideFlags: 0

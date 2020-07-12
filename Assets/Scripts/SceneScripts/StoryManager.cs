@@ -13,7 +13,8 @@ public class StoryManager : MonoBehaviour
     // ダイアログテキストを管理
     public DialogTextManager dialogTextManager;
     // ボタン
-    public Canvas Buttons;
+    public Button button1;
+    public Button button2;
     // 現在のステージ
     public string currentStory;
     // ストーリー情報
@@ -25,9 +26,9 @@ public class StoryManager : MonoBehaviour
     // 完了フラグ
     private bool isCompleted = false;
     // ボタンテキスト1
-    [SerializeField] Text button1;
+    [SerializeField] Text button1Text;
     // ボタンテキスト2
-    [SerializeField] Text button2;
+    [SerializeField] Text button2Text;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +52,7 @@ public class StoryManager : MonoBehaviour
         ShowText(textArray, buttonTextArray);
     }
 
-    public void ShowButtons(bool isTrue)
+    public void ShowButtons(bool isTrue = true)
     {
         // 全テキスト表示が終わっていたら、ボタン表示せずメニューに戻る
         if (isCompleted)
@@ -60,7 +61,8 @@ public class StoryManager : MonoBehaviour
         }
         else
         {
-            Buttons.gameObject.SetActive(isTrue);
+            button1.gameObject.SetActive(isTrue);
+            if (button2Text.text != "") button2.gameObject.SetActive(isTrue);
         }
     }
 
@@ -85,8 +87,8 @@ public class StoryManager : MonoBehaviour
         }
 
         // ボタン用テキストをセット(暫定)
-        button1.text = (string)buttonTextArray[0];
-        button2.text = (buttonTextArray.Count > 1) ? (string)buttonTextArray[1] : "";
+        button1Text.text = (string)buttonTextArray[0];
+        button2Text.text = (buttonTextArray.Count > 1) ? (string)buttonTextArray[1] : "";
 
         // ストーリーテキスト表示
         dialogTextManager.SetScenarios(textList.ToArray());
